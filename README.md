@@ -329,6 +329,8 @@ Only one environment variable is required:
 
 See the template dotenv.template file for the defaults and what environment variable options are available.
 
+For a comprehensive guide on all available environment variables, including those for specific models (Gemini, Veo, Imagen, Lyria), storage configurations, and feature flags, please refer to the [Environment Variables Explainer](./environment_variables.md).
+
 
 ## GenMedia Creative Studio - Developing
 
