@@ -135,6 +135,8 @@ export REGION=us-central1 PROJECT_ID=$(gcloud config get project)
 export INITIAL_USER=admin@example.com
 ```
 
+For a comprehensive guide on all available environment variables, including those for specific models (Gemini, Veo, Imagen, Lyria), storage configurations, and feature flags, please refer to the [Environment Variables Explainer](./environment_variables.md).
+
 ## Deploying with Custom Domain
 
 Follow these steps if you are going to deploy GenMedia Creative Studio using your own custom domain. You will need the ability to create a DNS A record if you choose this deployment option.
