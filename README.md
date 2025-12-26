@@ -164,12 +164,13 @@ export DOMAIN_NAME=creativestudio.example.com
 Make sure your command line is in the folder containing this README (i.e., in the root of the main repository, /). Then create the `terraform.tfvars` using the following command:
 
 ```bash
-cat > terraform.tfvars << EOF
+cat > infra/terraform.tfvars << EOF
 project_id = "$PROJECT_ID"
 initial_user = "$INITIAL_USER"
 domain = "$DOMAIN_NAME"
 EOF
 
+cd infra
 terraform init
 terraform apply
 ```
@@ -186,11 +187,7 @@ If you use Google Cloud DNS, follow the steps [here](https://cloud.google.com/dn
 
 ### 3. Build and Deploy Container Image
 
-A shell script, `build.sh`, is included in this repo that submits a build to Cloud Build which builds and deploys the application's container image. Use the following command:
-
-```bash
-./build.sh
-```
+A shell script, `build.sh`, is included in this repo that submits a build to Cloud Build which builds and deploys the application's container image. infra/build.sh
 
 ### 4. Wait for certificate to go to provisioned state
 
@@ -209,12 +206,13 @@ If you are unable to create a DNS record in your corporate domain, you can also 
 Make sure your command line is in the folder containing this README (i.e., in the root of the main repository, /). Then create the `terraform.tfvars` using the following command:
 
 ```bash
-cat > terraform.tfvars << EOF
+cat > infra/terraform.tfvars << EOF
 project_id = "$PROJECT_ID"
 initial_user = "$INITIAL_USER"
 use_lb = false
 EOF
 
+cd infra
 terraform init
 terraform apply
 ```
@@ -225,11 +223,7 @@ Make sure to take note of the Cloud Run URL that is output. This is what you wil
 
 ### 2. Build and Deploy Container Image
 
-A shell script, `build.sh`, is included in this repo that submits a build to Cloud Build which builds and deploys the application's container image. Use the following command:
-
-```bash
-./build.sh
-```
+A shell script, `build.sh`, is included in this repo that submits a build to Cloud Build which builds and deploys the application's container image. infra/build.sh
 
 ### 3. Edit Cloud Run's IAP Policy to provide initial user's access
 
@@ -285,13 +279,19 @@ If the updates include changes to the Terraform configuration (e.g., new environ
    git pull
    ```
 
-2. Initialize Terraform to download any new provider requirements:
+2. Navigate to the infrastructure directory:
+
+   ```bash
+   cd infra
+   ```
+
+3. Initialize Terraform to download any new provider requirements:
 
    ```bash
    terraform init -upgrade
    ```
 
-3. Apply the changes. Terraform will only update what has changed:
+4. Apply the changes. Terraform will only update what has changed:
 
    ```bash
    terraform apply
